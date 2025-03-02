@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo de Folha de Pagamento</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Calculadora de Folha de Pagamento</h2>
+        <div class="form-group">
+            <label>Vencimento (Salário Base):</label>
+            <input type="number" id="vencimento" placeholder="Digite o salário base">
+        </div>
+
+        <div class="form-group">
+            <label>Adicional de Titulação/Nível Superior:</label>
+            <input type="number" id="adicional" placeholder="Digite o adicional">
+        </div>
+
+        <div class="form-group">
+            <label>Gratificação Serviço Compl (BH):</label>
+            <input type="number" id="gratificacao" placeholder="Digite a gratificação">
+        </div>
+
+        <div class="form-group">
+            <label>Auxílio Alimentação:</label>
+            <input type="number" id="auxilio" placeholder="Digite o auxílio alimentação">
+        </div>
+
+        <div class="form-group">
+            <label>Número de dependentes:</label>
+            <input type="number" id="dependentes" value="1">
+        </div>
+
+        <button onclick="calcularFolha()">Calcular</button>
+
+        <h3>Resultado:</h3>
+        <table>
+            <tr><td>Total Bruto:</td><td id="totalBruto">R$ 0,00</td></tr>
+            <tr><td>Contribuição Previdenciária (FPS):</td><td id="fps">R$ 0,00</td></tr>
+            <tr><td>IRRF:</td><td id="irrf">R$ 0,00</td></tr>
+            <tr><td>Total Descontos:</td><td id="totalDescontos">R$ 0,00</td></tr>
+            <tr><td>Total Líquido:</td><td id="totalLiquido">R$ 0,00</td></tr>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

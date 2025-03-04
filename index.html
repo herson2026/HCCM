@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+       <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -11,22 +11,22 @@
         <h2>Calculadora de Folha de Pagamento</h2>
         <div class="form-group">
             <label>Vencimento (Salário Base):</label>
-            <input type="number" id="vencimento" placeholder="Digite o salário base">
+            <input type="text" id="vencimento" placeholder="Digite o salário base" oninput="formatarMoeda(this)">
         </div>
 
         <div class="form-group">
             <label>Adicional de Titulação/Nível Superior:</label>
-            <input type="number" id="adicional" placeholder="Digite o adicional">
+            <input type="text" id="adicional" placeholder="Digite o adicional" oninput="formatarMoeda(this)">
         </div>
 
         <div class="form-group">
             <label>Gratificação Serviço Compl (BH):</label>
-            <input type="number" id="gratificacao" placeholder="Digite a gratificação">
+            <input type="text" id="gratificacao" placeholder="Digite a gratificação" oninput="formatarMoeda(this)">
         </div>
 
         <div class="form-group">
             <label>Auxílio Alimentação:</label>
-            <input type="number" id="auxilio" placeholder="Digite o auxílio alimentação">
+            <input type="text" id="auxilio" placeholder="Digite o auxílio alimentação" oninput="formatarMoeda(this)">
         </div>
 
         <div class="form-group">

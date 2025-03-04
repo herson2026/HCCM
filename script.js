@@ -1,9 +1,19 @@
+    // Função para formatar o valor como moeda (R$)
+function formatarMoeda(input) {
+    let valor = input.value.replace(/\D/g, ''); // Remove tudo que não é número
+    if (valor) {
+        valor = (parseInt(valor) / 100).toFixed(2).replace('.', ','); // Formata como moeda
+        input.value = 'R$ ' + valor;
+    }
+}
+
+// Função para calcular a folha de pagamento
 function calcularFolha() {
-    const salarioBase = parseFloat(document.getElementById('vencimento').value) || 0;
-    const adicional = parseFloat(document.getElementById('adicional').value) || 0;
-    const gratificacao = parseFloat(document.getElementById('gratificacao').value) || 0;
-    const auxilio = parseFloat(document.getElementById('auxilio').value) || 0;
-    const dependentes = parseInt(document.getElementById('dependentes').value) || 0;
+    const salarioBase = parseFloat(document.getElementById('vencimento').value.replace('R$ ', '').replace(',', '.')) || 0;
+    const adicional = parseFloat(document.getElementById('adicional').value.replace('R$ ', '').replace(',', '.')) || 0;
+    const gratificacao = parseFloat(document.getElementById('gratificacao').value.replace('R$ ', '').replace(',', '.')) || 0;
+    const auxilio = parseFloat(document.getElementById('auxilio').value.replace('R$ ', '').replace(',', '.')) || 0;
+    const dependentes = Math.max(parseInt(document.getElementById('dependentes').value) || 0, 0);
 
     // Total bruto
     const totalBruto = salarioBase + adicional + gratificacao + auxilio;
@@ -38,10 +48,23 @@ function calcularFolha() {
     const totalDescontos = fps + irrf;
     const totalLiquido = totalBruto - totalDescontos;
 
-    // Mostrar resultados
-    document.getElementById('totalBruto').innerText = `R$ ${totalBruto.toFixed(2)}`;
-    document.getElementById('fps').innerText = `R$ ${fps.toFixed(2)}`;
-    document.getElementById('irrf').innerText = `R$ ${irrf.toFixed(2)}`;
-    document.getElementById('totalDescontos').innerText = `R$ ${totalDescontos.toFixed(2)}`;
-    document.getElementById('totalLiquido').innerText = `R$ ${totalLiquido.toFixed(2)}`;
+    // Atualizar resultados na página
+    atualizarResultado('totalBruto', totalBruto);
+    atualizarResultado('fps', fps, true);  // Passando true para o FPS para sempre ficar vermelho
+    atualizarResultado('irrf', irrf, true);  // Passando true para o IRRF para sempre ficar vermelho
+    atualizarResultado('totalDescontos', totalDescontos, true);  // Passando true para Total de Descontos para sempre ficar vermelho
+    atualizarResultado('totalLiquido', totalLiquido);
+}
+
+// Função para atualizar os resultados e garantir que FPS, IRRF e Total Descontos fiquem vermelhos
+function atualizarResultado(id, valor, vermelho = false) {
+    const elemento = document.getElementById(id);
+    elemento.innerText = `R$ ${valor.toFixed(2)}`;
+    
+    // Se o parâmetro 'vermelho' for true, aplica a cor vermelha
+    if (vermelho) {
+        elemento.style.color = 'red';
+    } else {
+        elemento.style.color = 'black'; // Cor padrão para outros valores
+    }
 }
